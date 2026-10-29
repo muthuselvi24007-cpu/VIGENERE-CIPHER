@@ -30,7 +30,42 @@ STEP-8: Repeat the above steps to generate the entire cipher text.
 
 
 ## PROGRAM
+```
 
+#include <stdio.h>
+#include <string.h>
+
+void vigenereCipher(char *text, char *key, int decrypt) {
+    int len = strlen(text);
+    int keyLen = strlen(key);
+
+    for (int i = 0; i < len; i++) {
+        int shift = key[i % keyLen] - 'A';
+        text[i] = 'A' + (text[i] - 'A' +
+                        (decrypt ? 26 - shift : shift)) % 26;
+    }
+}
+
+int main() {
+    char text[100], key[100];
+
+    printf("Enter plaintext (uppercase only): ");
+    scanf("%99s", text);
+
+    printf("Enter key (uppercase only): ");
+    scanf("%99s", key);
+
+    vigenereCipher(text, key, 0);
+    printf("Encrypted Message: %s\n", text);
+
+    vigenereCipher(text, key, 1);
+    printf("Decrypted Message: %s\n", text);
+
+    return 0;
+}
+```
 ## OUTPUT
+<img width="477" height="247" alt="image" src="https://github.com/user-attachments/assets/38f15cc4-a7a7-46f3-8d66-89630cabff60" />
 
 ## RESULT
+Thus,the program is verified successfully
